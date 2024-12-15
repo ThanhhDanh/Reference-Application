@@ -1,0 +1,446 @@
+{
+  "Banners": [
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/project162-foodapp.appspot.com/o/benner1.jpg?alt=media&token=c9097a6b-029a-418d-8142-4859805cb85b"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/project162-foodapp.appspot.com/o/banner2.jpg?alt=media&token=5bb275c8-a05b-47d7-8935-65b067064d24"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/project162-foodapp.appspot.com/o/banner3.jpg?alt=media&token=c75c5401-f8a1-4e3f-8d86-74a4eae23b0b"
+    }
+  ],
+  "Category": [
+    {
+      "Id": 0,
+      "Name": "Mathematics",
+      "ImagePath": "Mathematics",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 1,
+      "Name": "Physics",
+      "ImagePath": "Physics",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 2,
+      "Name": "Chemistry",
+      "ImagePath": "Chemistry",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 3,
+      "Name": "Biology",
+      "ImagePath": "Biology",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 4,
+      "Name": "Computer Science",
+      "ImagePath": "Computer Science",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 5,
+      "Name": "History",
+      "ImagePath": "History",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 6,
+      "Name": "Geography",
+      "ImagePath": "Geography",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 7,
+      "Name": "Economics",
+      "ImagePath": "Economics",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 8,
+      "Name": "Political Science",
+      "ImagePath": "Political Science",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 9,
+      "Name": "Literature",
+      "ImagePath": "Literature",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 10,
+      "Name": "Information Technology",
+      "ImagePath": "Information Technology",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 11,
+      "Name": "Philosophy",
+      "ImagePath": "Philosophy",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 12,
+      "Name": "Marketing",
+      "ImagePath": "Marketing",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 13,
+      "Name": "International Relations",
+      "ImagePath": "International Relations",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 14,
+      "Name": "Finance",
+      "ImagePath": "Finance",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 15,
+      "Name": "Accounting",
+      "ImagePath": "Accounting",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    }
+  ],
+  "Schools": [
+    {
+      "Id": 0,
+      "Name": "Ho Chi Minh City University of Technology",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 1,
+      "Name": "University of Science",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 2,
+      "Name": "University of Social Sciences and Humanities",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 3,
+      "Name": "International University",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 4,
+      "Name": "University of Information Technology",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 5,
+      "Name": "University of Economics and Law",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 6,
+      "Name": "Ho Chi Minh Open University",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 7,
+      "Name": "Ton Duc Thang University",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 8,
+      "Name": "University of Architecture Ho Chi Minh City",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 9,
+      "Name": "Ho Chi Minh City University of Law",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 10,
+      "Name": "Industrial University of Ho Chi Minh City",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    }
+  ],
+  "Users": [
+    {
+      "Id": 0,
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Phone": "1234567890",
+      "Email": "john.doe@example.com",
+      "Password": "123456",
+      "Avatar": "/avatars/john_doe.jpeg",
+      "SchoolId": 0,
+      "Role": "student",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 1,
+      "FirstName": "Jane",
+      "LastName": "Smith",
+      "Phone": "0987654321",
+      "Email": "jane.smith@example.com",
+      "Password": "123456",
+      "Avatar": "/avatars/jane_smith.jpeg",
+      "SchoolId": 1,
+      "Role": "teacher",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 2,
+      "FirstName": "Jane",
+      "LastName": "Mary",
+      "Phone": "0907654321",
+      "Email": "jane.mary@example.com",
+      "Password": "123456",
+      "Avatar": "/avatars/jane_mary.jpeg",
+      "SchoolId": 2,
+      "Role": "student",
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    }
+  ],
+  "Documents": [
+    {
+      "Id": 0,
+      "CategoryId": 0,
+      "SchoolId": 0,
+      "UserId": 0,
+      "ImagePath": "/documents/math_document.jpeg",
+      "Title": "Advanced Calculus",
+      "Description": "An in-depth look at calculus concepts",
+      "Price": 80,
+      "Star": 4.5,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 1,
+      "CategoryId": 1,
+      "SchoolId": 1,
+      "UserId": 1,
+      "ImagePath": "/documents/physics_document.jpeg",
+      "Title": "Introduction to Quantum Mechanics",
+      "Description": "Introduction to quantum mechanics",
+      "Price": 100,
+      "Star": 4.8,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 2,
+      "CategoryId": 2,
+      "SchoolId": 2,
+      "UserId": 0,
+      "ImagePath": "/documents/chemistry_document.jpeg",
+      "Title": "Organic Chemistry",
+      "Description": "Basics of organic compounds",
+      "Price": 50,
+      "Star": 4.2,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 3,
+      "CategoryId": 3,
+      "SchoolId": 3,
+      "UserId": 1,
+      "ImagePath": "/documents/biology_document.jpeg",
+      "Title": "Cell Biology",
+      "Description": "Study of cell structure and function",
+      "Price": 75,
+      "Star": 4.1,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 4,
+      "CategoryId": 4,
+      "SchoolId": 4,
+      "UserId": 0,
+      "ImagePath": "/documents/computer_science_document.jpeg",
+      "Title": "Algorithms",
+      "Description": "Fundamentals of computer algorithms",
+      "Price": 120,
+      "Star": 4.9,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 5,
+      "CategoryId": 5,
+      "SchoolId": 5,
+      "UserId": 1,
+      "ImagePath": "/documents/history_document.jpeg",
+      "Title": "World History",
+      "Description": "Events that shaped the modern world",
+      "Price": 70,
+      "Star": 4.3,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 6,
+      "CategoryId": 6,
+      "SchoolId": 6,
+      "UserId": 0,
+      "ImagePath": "/documents/geography_document.jpeg",
+      "Title": "Physical Geography",
+      "Description": "Study of Earth's landscapes",
+      "Price": 80,
+      "Star": 4.4,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 7,
+      "CategoryId": 7,
+      "SchoolId": 7,
+      "UserId": 1,
+      "ImagePath": "/documents/economics_document.jpeg",
+      "Title": "Microeconomics",
+      "Description": "Understanding supply and demand",
+      "Price": 65,
+      "Star": 4.5,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 8,
+      "CategoryId": 8,
+      "SchoolId": 8,
+      "UserId": 0,
+      "ImagePath": "/documents/political_science_document.jpeg",
+      "Title": "Political Theory",
+      "Description": "Foundational theories in political science",
+      "Price": 90,
+      "Star": 4.6,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 9,
+      "CategoryId": 9,
+      "SchoolId": 9,
+      "UserId": 1,
+      "ImagePath": "/documents/literature_document.jpeg",
+      "Title": "To Kill A Mockingbird",
+      "Description": "A timeless tale of justice, prejudice, and compassion",
+      "Price": 95,
+      "Star": 4.7,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 10,
+      "CategoryId": 10,
+      "SchoolId": 10,
+      "UserId": 1,
+      "ImagePath": "/documents/information_technology_document.jpeg",
+      "Title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+      "Description": "how to write clean, maintainable, and efficient code while embracing agile principles",
+      "Price": 100,
+      "Star": 4.8,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 11,
+      "CategoryId": 11,
+      "SchoolId": 11,
+      "UserId": 1,
+      "ImagePath": "/documents/philosophy_document.jpeg",
+      "Title": "Meditations",
+      "Description": "offering timeless reflections on Stoic philosophy and the practice of self-discipline, resilience, and virtue in the face of life's challenges",
+      "Price": 90,
+      "Star": 4.9,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 12,
+      "CategoryId": 12,
+      "SchoolId": 12,
+      "UserId": 1,
+      "ImagePath": "/documents/marketing_document.jpeg",
+      "Title": "Contagious: How to Build Word of Mouth in the Digital Age",
+      "Description": "how marketers can use psychological principles to make their products or ideas contagious",
+      "Price": 92,
+      "Star": 4.8,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 13,
+      "CategoryId": 13,
+      "SchoolId": 13,
+      "UserId": 1,
+      "ImagePath": "/documents/international_relations_document.jpeg",
+      "Title": "The Tragedy of Great Power Politics",
+      "Description": "A timeless tale of justice, prejudice, and compassion",
+      "Price": 96,
+      "Star": 4.8,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 14,
+      "CategoryId": 14,
+      "SchoolId": 14,
+      "UserId": 1,
+      "ImagePath": "/documents/finance_document.jpeg",
+      "Title": "The Intelligent Investor",
+      "Description": "A classic in the field of investing, this book provides timeless wisdom on value investing, focusing on long-term strategies and minimizing risk",
+      "Price": 90,
+      "Star": 4.2,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    },
+    {
+      "Id": 15,
+      "CategoryId": 15,
+      "SchoolId": 15,
+      "UserId": 1,
+      "ImagePath": "/documents/accounting_document.jpeg",
+      "Title": "Financial Accounting: A Managerial Perspective",
+      "Description": "emphasizing its practical applications for decision-making in management",
+      "Price": 100,
+      "Star": 5.0,
+      "CreatedAt": "2024-11-05T10:00:00Z",
+      "UpdatedAt": "2024-11-05T10:00:00Z"
+    }
+  ]
+}

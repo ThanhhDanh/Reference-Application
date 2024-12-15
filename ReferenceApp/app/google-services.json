@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "990926096459",
+    "project_id": "referenceapp-961ce",
+    "storage_bucket": "referenceapp-961ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990926096459:android:eb4b125bbecf4ec8cbe5ce",
+        "android_client_info": {
+          "package_name": "com.example.referenceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs46Az6MwH0ikATiRm9rtxm4yMhiw9v6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

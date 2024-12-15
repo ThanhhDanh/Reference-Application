@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="@string/home"
+        app:cnb_backgroundColor="@color/red"
+        app:cnb_iconColor="@color/white"/>
+
+    <item android:id="@+id/cart"
+        android:icon="@drawable/cart"
+        android:title="@string/cart"
+        app:cnb_backgroundColor="@color/red"
+        app:cnb_iconColor="@color/white"/>
+
+    <item android:id="@+id/message"
+        android:icon="@drawable/message"
+        android:title="@string/message"
+        app:cnb_backgroundColor="@color/red"
+        app:cnb_iconColor="@color/white"/>
+
+    <item android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        android:title="@string/profile"
+        app:cnb_backgroundColor="@color/red"
+        app:cnb_iconColor="@color/white"/>
+</menu>
