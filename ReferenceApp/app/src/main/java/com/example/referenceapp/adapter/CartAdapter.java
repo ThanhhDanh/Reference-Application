@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,6 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
         ImageView pic;
         TextView num;
         ConstraintLayout trashBtn;
+        AppCompatButton checkOutBtn;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +87,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
             minusItem = itemView.findViewById(R.id.minusCartBtn);
             num = itemView.findViewById(R.id.numberItemTxt);
             trashBtn = itemView.findViewById(R.id.trashBtn);
+            checkOutBtn = itemView.findViewById(R.id.checkOutBtn);
         }
     }
 }

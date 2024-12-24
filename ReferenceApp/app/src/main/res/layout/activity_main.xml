@@ -141,6 +141,7 @@
                     android:paddingEnd="4dp"
                     android:paddingBottom="80dp"
                     tools:ignore="MissingConstraints"
+                    android:visibility="visible"
                     tools:layout_editor_absoluteX="5dp">
 
                 </androidx.recyclerview.widget.RecyclerView>

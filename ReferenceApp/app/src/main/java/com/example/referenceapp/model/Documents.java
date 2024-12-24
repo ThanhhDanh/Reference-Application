@@ -118,4 +118,27 @@ public class Documents implements Serializable {
     public void setNumberInCart(int numberInCart) {
         this.numberInCart = numberInCart;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Documents document = (Documents) obj;
+
+        return Id == document.Id &&
+                Title.equals(document.Title) &&
+                Description.equals(document.Description) &&
+                (ImagePath != null ? ImagePath.equals(document.ImagePath) : document.ImagePath == null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Id;
+        result = 31 * result + (Title != null ? Title.hashCode() : 0);
+        result = 31 * result + (Description != null ? Description.hashCode() : 0);
+        result = 31 * result + (ImagePath != null ? ImagePath.hashCode() : 0);
+        return result;
+    }
+
 }

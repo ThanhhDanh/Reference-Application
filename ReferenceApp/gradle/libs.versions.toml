@@ -10,6 +10,11 @@ constraintlayout = "2.1.4"
 glide = "4.16.0"
 chipNaviagtionBar = "1.4.0"
 gson = "2.11.0"
+#Momo
+momoSdk = "1.0.7"
+#Zalopay
+okhttp = "4.12.0"
+commonsCodec = "1.17.1"
 googleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 firebaseDatabase = "21.0.0"
@@ -27,6 +32,11 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 chip-navigation-bar = { group = "com.github.ismaeldivita", name = "chip-navigation-bar", version.ref = "chipNaviagtionBar" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+#Momo
+momo-sdk = { group = "com.github.momo-wallet", name = "mobile-sdk", version.ref = "momoSdk" }
+#Zalopay
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
+commons-codec = { group = "commons-codec", name = "commons-codec", version.ref = "commonsCodec"}
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }

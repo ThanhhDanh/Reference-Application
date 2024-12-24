@@ -42,4 +42,10 @@
     <string name="order_summary">Order Summary</string>
     <string name="check_out">Check out</string>
     <string name="name">name</string>
+    <string name="role">role</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="favourites">Favourites</string>
+    <string name="Documents">Documents</string>
+    <string name="upload_document">Upload Document</string>
+    <string name="logout">Logout</string>
 </resources>

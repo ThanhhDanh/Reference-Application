@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!-- Nền của view -->
+        <shape>
+            <solid android:color="#FDCA88" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1dp"> <!-- Đẩy đường viền xuống cạnh dưới -->
+        <shape>
+            <solid android:color="#FFEFDA" />
+        </shape>
+    </item>
+</layer-list>

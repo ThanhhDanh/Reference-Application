@@ -3,6 +3,7 @@ package com.example.referenceapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.bumptech.glide.Glide;
 import com.example.referenceapp.R;
 import com.example.referenceapp.activity.ListLessonActivity;
 import com.example.referenceapp.model.Category;
+import com.example.referenceapp.model.CategoryDiffCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewholder> {
     ArrayList<Category> items;
@@ -56,6 +61,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    // Phương thức để cập nhật danh sách sử dụng DiffUtil
+    public void setItems(ArrayList<Category> newItems) {
+        Log.d("CategoryAdapter", "New items size: " + newItems.size());
+        // Tạo DiffUtil callback
+        CategoryDiffCallback diffCallback = new CategoryDiffCallback(this.items, newItems);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        // Cập nhật danh sách
+        this.items.clear();
+        this.items.addAll(newItems);
+
+        // Thông báo cho RecyclerView cập nhật
+        diffResult.dispatchUpdatesTo(this);
     }
 
     public class viewholder extends RecyclerView.ViewHolder {

@@ -104,7 +104,7 @@
         android:autofillHints=""
         android:inputType="textPassword" />
 
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -116,7 +116,6 @@
         android:hint="@string/school"
         android:id="@+id/school"
         android:layout_below="@id/password"
-        android:autofillHints=""
         android:inputType="text" />
 
     <EditText

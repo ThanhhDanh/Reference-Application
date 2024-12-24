@@ -2,6 +2,7 @@ package com.example.referenceapp.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -14,6 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.referenceapp.Helper.DateUtils;
 import com.example.referenceapp.Helper.ManagmentCart;
 import com.example.referenceapp.R;
 import com.example.referenceapp.model.Documents;
@@ -76,6 +78,8 @@ public class DetailActivity extends AppCompatActivity {
         ratingTxt.setText(object.getStar() + "Rating");
         ratingBar.setRating((float) object.getStar());
         totalTxt.setText(num*object.getPrice() + "$");
+        String formattedDate = DateUtils.formatDate(object.getCreatedAt());
+        timeTxt.setText(formattedDate + " min");
 
         plusTxt.setOnClickListener(new View.OnClickListener() {
             @Override

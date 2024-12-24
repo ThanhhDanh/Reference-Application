@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore)
+    implementation(files("D:\\Reference-Application\\zalopay\\zpdk-release-v3.1.aar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -50,4 +51,9 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.chip.navigation.bar)
     implementation(libs.glide)
+    //Momo
+    implementation(libs.momo.sdk)
+    //Zalopay
+    implementation(libs.okhttp)
+    implementation(libs.commons.codec)
 }
