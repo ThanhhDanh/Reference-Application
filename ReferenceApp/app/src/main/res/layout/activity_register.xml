@@ -133,33 +133,33 @@
         android:autofillHints=""
         android:inputType="text" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/member"
-        >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/choose_avatar"
-            android:id="@+id/chooseAvatar" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_below="@id/member"-->
+<!--        >-->
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="50dp"-->
+<!--            android:text="@string/choose_avatar"-->
+<!--            android:id="@+id/chooseAvatar" />-->
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/avatarPreview"
-            android:background="@drawable/rounded_corner"
-            android:contentDescription="@string/avatar_preview" />
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:id="@+id/avatarPreview"-->
+<!--            android:background="@drawable/rounded_corner"-->
+<!--            android:contentDescription="@string/avatar_preview" />-->
+<!--    </LinearLayout>-->
     
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@id/member"
         android:text="@string/register"
         android:id="@+id/register"/>

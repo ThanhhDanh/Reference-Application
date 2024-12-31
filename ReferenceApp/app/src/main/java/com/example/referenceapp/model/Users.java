@@ -1,7 +1,6 @@
 package com.example.referenceapp.model;
 
 public class Users {
-    private String Avatar;
     private String CreatedAt;
     private String Email;
     private String FirstName;
@@ -13,13 +12,6 @@ public class Users {
     private String UpdatedAt;
 
     public Users() {
-    }
-    public String getAvatar() {
-        return Avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        Avatar = avatar;
     }
 
     public String getCreatedAt() {

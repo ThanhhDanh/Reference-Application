@@ -29,7 +29,7 @@ import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageView backProfileBtn, imgProfile;
+    private ImageView backProfileBtn;
     private TextView nameTxt, emailTxt, roleTxt;
     private Button btnEditProfile, btnLogout;
     private LinearLayout layoutFavourites, layoutDocuments, layoutUpdateDocuments;
@@ -54,15 +54,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void AnhXa() {
         backProfileBtn = findViewById(R.id.backProfileBtn);
-        imgProfile  = findViewById(R.id.imgProfile);
         nameTxt = findViewById(R.id.nameTxt);
-        emailTxt = findViewById(R.id.emptyTxt);
+        emailTxt = findViewById(R.id.emailTxt);
         roleTxt = findViewById(R.id.roleTxt);
         btnEditProfile = findViewById(R.id.btnEditProfile);
         btnLogout = findViewById(R.id.btnLogout);
         layoutDocuments = findViewById(R.id.layoutDocuments);
         layoutFavourites = findViewById(R.id.layoutFavourites);
-        layoutUpdateDocuments = findViewById(R.id.layoutUpdateDocuments);
+        layoutUpdateDocuments = findViewById(R.id.layoutUploadDocuments);
     }
 
     private void loadUserProfile() {
@@ -74,24 +73,17 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    String firstName = snapshot.child("FirstName").getValue(String.class);
-                    String lastName = snapshot.child("LastName").getValue(String.class);
-                    String email = snapshot.child("Email").getValue(String.class);
-                    String role = snapshot.child("Role").getValue(String.class);
-                    String avatarUrl = snapshot.child("Avatar").getValue(String.class);
+                    String firstName = snapshot.child("firstName").getValue(String.class);
+                    String lastName = snapshot.child("lastName").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String role = snapshot.child("role").getValue(String.class);
 
-                    String fullName = (firstName != null ? firstName : "") + " " + (lastName != null ? lastName : "");
+                    String fullName = (lastName != null ? lastName : "") + " " + (firstName != null ? firstName : "");
 
                     // Hiển thị dữ liệu lên giao diện
                     nameTxt.setText(fullName.trim());
                     emailTxt.setText(email);
                     roleTxt.setText(role);
-
-                    // Load ảnh avatar bằng thư viện như Glide hoặc Picasso
-                    Glide.with(ProfileActivity.this)
-                            .load(avatarUrl)
-                            .placeholder(R.drawable.icon_account) // Ảnh mặc định
-                            .into(imgProfile);
                 } else {
                     Toast.makeText(ProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                 }
@@ -111,6 +103,11 @@ public class ProfileActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             finish();
+        });
+
+        layoutUpdateDocuments.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, UploadDocumentActivity.class);
+            startActivity(intent);
         });
     }
 }

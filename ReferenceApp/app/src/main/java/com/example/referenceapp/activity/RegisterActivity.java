@@ -37,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,14 +54,11 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText email, password, phone, firstName, lastName;
+    private EditText email, password, phone, firstName, lastName, member;
     private AutoCompleteTextView school;
-    private Button btnRegister, btnChooseAvatar;
-    private ImageView avatarPreview, backRegisterBtn;
-    private Uri avatarUri;
-
+    private Button btnRegister;
+    private ImageView backRegisterBtn;
     private FirebaseAuth auth;
-    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     private List<String> schoolList = new ArrayList<>();
     private Map<String, Integer> schoolMap = new HashMap<>();
@@ -76,23 +74,13 @@ public class RegisterActivity extends AppCompatActivity {
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         school = findViewById(R.id.school);
+        member = findViewById(R.id.member);
         btnRegister = findViewById(R.id.register);
-        btnChooseAvatar = findViewById(R.id.chooseAvatar);
-        avatarPreview = findViewById(R.id.avatarPreview);
         backRegisterBtn = findViewById(R.id.backRegisterBtn);
 
         auth = FirebaseAuth.getInstance();
 
-        activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        avatarUri = result.getData().getData();
-                        avatarPreview.setImageURI(avatarUri);
-                    }
-                });
-
-        btnChooseAvatar.setOnClickListener(v -> openFileChooser());
+        //btnChooseAvatar.setOnClickListener(v -> openFileChooser());
         btnRegister.setOnClickListener(v -> validateAndRegister());
         backRegisterBtn.setOnClickListener(v -> finish());
 
@@ -108,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 schoolMap.clear();
                 for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
                     String name = schoolSnapshot.child("Name").getValue(String.class);
-                    int id = schoolSnapshot.child("Id").getValue(Integer.class);
+                    int id = Integer.parseInt(Objects.requireNonNull(schoolSnapshot.getKey()));
                     if (name != null) {
                         schoolList.add(name);
                         schoolMap.put(name, id);
@@ -139,12 +127,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        activityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
-    }
+//    private void openFileChooser() {
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        activityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
+//    }
 
     private void validateAndRegister() {
         String txt_email = email.getText().toString().trim();
@@ -153,14 +141,8 @@ public class RegisterActivity extends AppCompatActivity {
         String txt_firstName = firstName.getText().toString().trim();
         String txt_lastName = lastName.getText().toString().trim();
         String txt_school = school.getText().toString().trim();
+        String txt_member = member.getText().toString().trim();
 
-        // Log các trường nhập vào
-        Log.d("RegisterActivity", "Email: " + txt_email);
-        Log.d("RegisterActivity", "Password: " + txt_password);
-        Log.d("RegisterActivity", "Phone: " + txt_phone);
-        Log.d("RegisterActivity", "First Name: " + txt_firstName);
-        Log.d("RegisterActivity", "Last Name: " + txt_lastName);
-        Log.d("RegisterActivity", "School: " + txt_school);
 
         if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) ||
                 TextUtils.isEmpty(txt_phone) || TextUtils.isEmpty(txt_firstName) ||
@@ -169,81 +151,45 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (txt_password.length() < 6) {
             Toast.makeText(this, "Password too short!", Toast.LENGTH_SHORT).show();
         } else {
-            registerUser(txt_email, txt_password, txt_phone, txt_firstName, txt_lastName, txt_school);
+            registerUser(txt_email, txt_password, txt_phone, txt_firstName, txt_lastName, txt_school, txt_member);
         }
     }
 
-    private void registerUser(String email, String password, String phone, String firstName, String lastName, String school) {
+    private void registerUser(String email, String password, String phone, String firstName, String lastName, String school, String member) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                if (avatarUri != null) {
-                    uploadAvatarAndSaveUserData(email, phone, firstName, lastName, school);
-                } else {
-                    saveUserDataWithoutAvatar(email, phone, firstName, lastName, school, "");
-                }
+                Log.d("RegisterActivity", "User data saved successfully");
+                saveUserData(email, phone, firstName, lastName, school, member);
             } else {
                 Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("RegisterActivity", "Failed to save user data", task.getException());
             }
         });
     }
 
-    private void uploadAvatarAndSaveUserData(String email, String phone, String firstName, String lastName, String school) {
-        if (avatarUri == null || avatarUri.toString().isEmpty()) {
-            Log.e("AvatarUpload", "Invalid Uri");
-            Toast.makeText(this, "No valid avatar selected.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference("images");
-        String fileName = System.currentTimeMillis() + "_" + getFileName(avatarUri); // Tạo tên tệp duy nhất
-        StorageReference avatarRef = storageRef.child(fileName);
-
-        Log.d("AvatarUpload", "Uploading to: " + avatarRef.getPath());
-
-        try {
-            InputStream stream = getContentResolver().openInputStream(avatarUri);
-            if (stream == null) {
-                Log.e("AvatarUpload", "InputStream is null");
-                Toast.makeText(this, "Failed to open input stream.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            avatarRef.putStream(stream)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        Log.d("AvatarUpload", "Upload successful");
-                        avatarRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            Log.d("AvatarUpload", "Download URL: " + uri.toString());
-                            saveUserDataWithoutAvatar(email, phone, firstName, lastName, school, uri.toString());
-                        }).addOnFailureListener(e -> {
-                            Log.e("AvatarUpload", "Failed to get download URL", e);
-                            Toast.makeText(this, "Failed to upload avatar.", Toast.LENGTH_SHORT).show();
-                        });
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("AvatarUpload", "Failed to upload avatar", e);
-                        Toast.makeText(this, "Failed to upload avatar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-        } catch (FileNotFoundException e) {
-            Log.e("AvatarUpload", "File not found", e);
-            Toast.makeText(this, "File not found: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void saveUserDataWithoutAvatar(String email, String phone, String firstName, String lastName, String school, String avatarUrl) {
+    private void saveUserData(String email, String phone, String firstName, String lastName, String school, String member) {
         String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
+        // Lấy ID trường học từ schoolMap
+        Integer schoolId = schoolMap.get(school);
+        if (schoolId == null) {
+            Toast.makeText(this, "Invalid school selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Tạo đối tượng Users
         Users user = new Users();
-        user.setAvatar(avatarUrl);
         user.setEmail(email);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPhone(phone);
-        user.setSchoolId(Integer.parseInt(school)); // Chuyển đổi sang Integer nếu cần
-        user.setRole("student");
+        user.setSchoolId(schoolId);
+        user.setRole(member);
         user.setCreatedAt(getCurrentTimestamp());
         user.setUpdatedAt(getCurrentTimestamp());
+
+        Log.d("RegisterActivity", "User data: " + new Gson().toJson(user));
 
         // Lưu đối tượng Users vào Realtime Database
         reference.setValue(user).addOnCompleteListener(task -> {
@@ -258,28 +204,28 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // Phương thức để lấy tên tệp từ Uri
-    @SuppressLint("Range")
-    private String getFileName(Uri uri) {
-        String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        if (result == null) {
-            result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
-            }
-        }
-        return result;
-    }
+//    @SuppressLint("Range")
+//    private String getFileName(Uri uri) {
+//        String result = null;
+//        if (uri.getScheme().equals("content")) {
+//            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+//            try {
+//                if (cursor != null && cursor.moveToFirst()) {
+//                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//                }
+//            } finally {
+//                cursor.close();
+//            }
+//        }
+//        if (result == null) {
+//            result = uri.getPath();
+//            int cut = result.lastIndexOf('/');
+//            if (cut != -1) {
+//                result = result.substring(cut + 1);
+//            }
+//        }
+//        return result;
+//    }
 
     private String getCurrentTimestamp() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

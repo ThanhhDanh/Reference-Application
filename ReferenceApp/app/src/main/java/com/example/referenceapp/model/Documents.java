@@ -9,7 +9,6 @@ public class Documents implements Serializable {
     private int SchoolId;
     private int UserId;
     private String Description;
-    private int Id;
     private double Price;
     private String ImagePath;
 
@@ -53,14 +52,6 @@ public class Documents implements Serializable {
 
     public void setDescription(String description) {
         Description = description;
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
     }
 
     public double getPrice() {
@@ -126,16 +117,14 @@ public class Documents implements Serializable {
 
         Documents document = (Documents) obj;
 
-        return Id == document.Id &&
-                Title.equals(document.Title) &&
+        return Title.equals(document.Title) &&
                 Description.equals(document.Description) &&
                 (ImagePath != null ? ImagePath.equals(document.ImagePath) : document.ImagePath == null);
     }
 
     @Override
     public int hashCode() {
-        int result = Id;
-        result = 31 * result + (Title != null ? Title.hashCode() : 0);
+        int result = (Title != null ? Title.hashCode() : 0);
         result = 31 * result + (Description != null ? Description.hashCode() : 0);
         result = 31 * result + (ImagePath != null ? ImagePath.hashCode() : 0);
         return result;

@@ -26,7 +26,7 @@ public class CombinedDiffCallback extends DiffUtil.Callback {
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
         // So sánh dựa trên ID hoặc thuộc tính duy nhất
-        return oldList.get(oldItemPosition).getId() == newList.get(newItemPosition).getId();
+        return oldList.get(oldItemPosition).getTitle().equals(newList.get(newItemPosition).getTitle());
     }
 
     @Override

@@ -48,4 +48,5 @@
     <string name="Documents">Documents</string>
     <string name="upload_document">Upload Document</string>
     <string name="logout">Logout</string>
+    <string name="category">category</string>
 </resources>
