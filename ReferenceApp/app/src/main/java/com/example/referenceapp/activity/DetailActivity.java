@@ -60,12 +60,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setVariable() {
         managmentCart = new ManagmentCart(this);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backBtn.setOnClickListener(v -> finish());
 
         Glide.with(this)
                 .load(object.getImagePath())

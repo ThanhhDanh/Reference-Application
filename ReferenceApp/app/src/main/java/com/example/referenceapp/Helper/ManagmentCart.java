@@ -1,6 +1,7 @@
 package com.example.referenceapp.Helper;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -20,6 +21,7 @@ public class ManagmentCart {
 
     public void insertFood(Documents item) {
         ArrayList<Documents> listpop = getListCart();
+        Log.d("listpop: ", String.valueOf(listpop));
         boolean existAlready = false;
         int n = 0;
         for (int i = 0; i < listpop.size(); i++) {

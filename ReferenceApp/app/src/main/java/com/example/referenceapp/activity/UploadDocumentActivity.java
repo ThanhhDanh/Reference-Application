@@ -1,6 +1,7 @@
 package com.example.referenceapp.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -32,9 +33,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +49,7 @@ public class UploadDocumentActivity extends AppCompatActivity {
 
     private AutoCompleteTextView schoolAutoComplete, categoryAutoComplete;
     private EditText etTitle, etDescription, etPrice, etImagePath, etStar;
-    private ImageView imgSelected;
+    private ImageView imgSelected, btnBackUploadDocument;
     private Button btnUpload;
 
     private List<String> schoolList = new ArrayList<>();
@@ -77,6 +81,7 @@ public class UploadDocumentActivity extends AppCompatActivity {
         etImagePath = findViewById(R.id.etImagePath);
         etStar = findViewById(R.id.etStar);
         imgSelected = findViewById(R.id.imgSelected);
+        btnBackUploadDocument = findViewById(R.id.btnBackUploadDocument);
 
         // Kiểm tra và yêu cầu quyền truy cập bộ nhớ
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -90,6 +95,7 @@ public class UploadDocumentActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        btnBackUploadDocument.setOnClickListener(v -> finish());
         btnUpload.setOnClickListener(v -> uploadDocument());
         etImagePath.setOnClickListener(v -> openImageChooser());
 
@@ -101,15 +107,20 @@ public class UploadDocumentActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
+            Log.d("grantResults:", Arrays.toString(grantResults));
+            Log.d("grantResults[0]:", String.valueOf(grantResults[0]));
+            Log.d("PackageManager.PERMISSION_GRANTED:", String.valueOf(PackageManager.PERMISSION_GRANTED));
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Quyền đã được cấp, bạn có thể cho phép chọn ảnh
                 openImageChooser();
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    @SuppressLint("IntentReset")
     private void openImageChooser() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
@@ -121,29 +132,53 @@ public class UploadDocumentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE_REQUEST) {
-            Uri imageUri = data.getData();  // Lấy Uri của ảnh đã chọn
+            Uri imageUri = data.getData();
 
             if (imageUri != null) {
+                Log.d("UploadImage", "Image URI: " + imageUri.toString());
+
+                // Gán ảnh vào ImageView để xem trước
                 imgSelected.setImageURI(imageUri);
+
+                // Kiểm tra và upload ảnh
                 uploadImage(imageUri);
+            } else {
+                Log.e("UploadImage", "Image URI is null");
+                Toast.makeText(this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void uploadImage(Uri imageUri) {
-        StorageReference fileReference = storageReference.child("images/" + UUID.randomUUID().toString());
+        try {
+            // Đọc dữ liệu từ URI và sao chép vào tệp tạm thời
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            if (inputStream == null) {
+                throw new IOException("Cannot open InputStream for URI: " + imageUri);
+            }
 
-        fileReference.putFile(imageUri)
-                .addOnSuccessListener(taskSnapshot -> {
-                    // Sau khi tải lên thành công, lấy URL tải lên của ảnh
-                    fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
-                        String imageUrl = uri.toString();
-                        etImagePath.setText(imageUrl); // Hiển thị URL ảnh vào EditText
+            // Tạo tên tệp ngẫu nhiên cho ảnh
+            String uniqueId = UUID.randomUUID().toString();
+            StorageReference fileReference = storageReference.child("images/" + uniqueId);
+
+            // Tải lên ảnh từ InputStream
+            fileReference.putStream(inputStream)
+                    .addOnSuccessListener(taskSnapshot -> fileReference.getDownloadUrl()
+                            .addOnSuccessListener(uri -> {
+                                String imageUrl = uri.toString();
+                                etImagePath.setText(imageUrl); // Cập nhật đường dẫn ảnh vào EditText
+                                Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                            }))
+                    .addOnFailureListener(e -> {
+                        Log.e("UploadImage", "Error: " + e.getMessage());
+                        Toast.makeText(this, "Image upload failed", Toast.LENGTH_SHORT).show();
                     });
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(UploadDocumentActivity.this, "Image upload failed", Toast.LENGTH_SHORT).show();
-                });
+
+            inputStream.close(); // Đóng InputStream sau khi hoàn thành
+        } catch (IOException e) {
+            Log.e("UploadImage", "Error opening InputStream", e);
+            Toast.makeText(this, "Failed to read the selected image", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
